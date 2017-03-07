@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : general.xml
+    Created on : June 22, 2016, 4:46 PM
+    Author     : miracle
+    Description:
+        Purpose of the document follows.
+-->
+
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="ajax" namespace="/" extends="default">
+        <action name="userExistance" class="com.mss.apcloud.ajax.AjaxHandlerAction" method="userExistance" ></action>
+<!--    New action for setting districts based on state id       -->
+        <action name="getDistrictNames" class="com.mss.apcloud.ajax.AjaxHandlerAction" method="getDistrictNames" ></action>
+        <action name="getCollegeCodes" class="com.mss.apcloud.ajax.AjaxHandlerAction" method="getCollegeCodes"></action>
+        <action name="check" class="com.mss.apcloud.ajax.AjaxHandlerAction" method="check"></action>
+        <action name="forgotPasswordSubmit" class="com.mss.apcloud.ajax.AjaxHandlerAction" method="forgotPassword" ></action>
+        <action name="getRepoData" class="com.mss.apcloud.ajax.AjaxHandlerAction" method="getRepoData" ></action>
+        <action name="getDocumentfile" class="com.mss.apcloud.ajax.AjaxHandlerAction" method="getDocumentfile" ></action>
+        <action name="getCurriculam" class="com.mss.apcloud.ajax.AjaxHandlerAction" method="getCurriculam" ></action>
+        <action name="getCollegeCoordinators" class="com.mss.apcloud.ajax.AjaxHandlerAction" method="getCollegeCoordinators" ></action>
+       
+        <action name="getTechTopicsData" class="com.mss.apcloud.ajax.AjaxHandlerAction" method="getTechTopicsData"/>
+        <action name="getExamResultsByTopicId" class="com.mss.apcloud.ajax.AjaxHandlerAction" method="getExamResultsByTopicId"/>
+       
+        <action name="enrollTechTopic" class="com.mss.apcloud.ajax.AjaxHandlerAction" method="enrollTechTopic"/>
+       
+        <action name="getEnrolledTopicsList" class="com.mss.apcloud.ajax.AjaxHandlerAction" method="getEnrolledTopicsList"/>
+        <action name="getAddCollegeDet" class="com.mss.apcloud.ajax.AjaxHandlerAction" method="getAddCollegeDet"/>
+        <action name="editCollegeDet" class="com.mss.apcloud.ajax.AjaxHandlerAction" method="editCollegeDet"/>
+        
+        <action name="getEnrollCollegeCoordinators" class="com.mss.apcloud.ajax.AjaxHandlerAction" method="getEnrollCollegeCoordinators"/>
+        <action name="addWorkshop" class="com.mss.apcloud.ajax.AjaxHandlerAction" method="addWorkshop"/>
+        <action name="updateWorkshop" class="com.mss.apcloud.ajax.AjaxHandlerAction" method="updateWorkshop"/>
+        <action name="addCurrculumData" class="com.mss.apcloud.ajax.AjaxHandlerAction" method="addCurrculumData"/>
+        <action name="updateCurrculumData" class="com.mss.apcloud.ajax.AjaxHandlerAction" method="updateCurrculumData"/>
+         <action name="getWorkshopCodeByCollegeName" class="com.mss.apcloud.ajax.AjaxHandlerAction" method="getWorkshopCodeByCollegeName"/>
+          <action name="getEnrolledWorkshopandTopics" class="com.mss.apcloud.ajax.AjaxHandlerAction" method="getEnrolledWorkshopandTopics"/>
+       
+       <!--new register coach details-->
+         <action name="editCoachDetils" class="com.mss.apcloud.ajax.AjaxHandlerAction" method="editCoachDetils"/>
+         <action name="getAddCoachDet" class="com.mss.apcloud.ajax.AjaxHandlerAction" method="getAddCoachDet"/>
+    </package>
+</struts>

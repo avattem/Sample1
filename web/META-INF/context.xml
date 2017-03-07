@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="/ac">
+ <!-- <Resource 
+  auth="Container" 
+  description="c3pO DataSource" 
+  driverClass="com.mysql.jdbc.Driver" 
+  factory="org.apache.naming.factory.BeanFactory" 
+  jdbcUrl="jdbc:mysql://192.168.1.131:3306/apcloud?autoReconnect=true" 
+  name="jndi/apcloud" 
+  password="appcloud@2k16" 
+  type="com.mchange.v2.c3p0.ComboPooledDataSource" 
+  user="AppCloud"/>   
+    <Resource 
+  auth="Container" 
+  description="c3pO DataSource" 
+  driverClass="com.mysql.jdbc.Driver" 
+  factory="org.apache.naming.factory.BeanFactory" 
+  jdbcUrl="jdbc:mysql://192.168.1.203:3306/mirage?autoReconnect=true" 
+  name="jndi/hubbleteam" 
+  password="lokam001" 
+  type="com.mchange.v2.c3p0.ComboPooledDataSource" 
+  user="CA$T3@MAdm!n"/> -->
+  
+  
+
+  
+
+
+
+
+  
+  
+
+ 
+</Context>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : struts.xml
+    Created on : June 22, 2016, 4:34 PM
+    Author     : miracle
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    
+   <constant name="struts.freemarker.templatesCache" value="true" />
+        <constant name="struts.configuration.xml.reload" value="true" />
+        
+        <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+        <!-- <constant name="struts.ui.theme" value="simple"/> -->
+        <!-- 10mb -->
+        <constant name="struts.multipart.maxSize" value="10000000" />
+   
+    <!-- Configuration for the default package. -->
+<package name="default" extends="struts-default" namespace="/">
+    
+    
+                <interceptors>
+	     <interceptor name="login" class="com.mss.apcloud.general.LoginInterceptor" />
+            <interceptor-stack name="crudStack">
+		  <interceptor-ref name="login"/>
+                <interceptor-ref name="checkbox"/>
+                <interceptor-ref name="params"/>
+                <interceptor-ref name="staticParams"/>
+                <interceptor-ref name="actionMappingParams"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+	 
+        <global-results>
+            <result name="sessionExpire" type="redirect">general/login.action</result>
+            
+      </global-results>
+      <action name="about-us">
+            <result>about-us.jsp</result>
+        </action>
+        <action name="enroll">
+            <result>enroll.jsp</result>
+        </action>
+    <action name="home" class="com.mss.apcloud.general.LoginAction" method="doLogout">
+        <result>home.jsp</result>
+        </action>
+        <action name="techdetails" class="com.mss.apcloud.techdetails.TechDetailsAction" method="getData">               
+            <result>techdetails1.jsp</result>
+          
+        </action>
+        <action name="renderImage" class="com.mss.apcloud.techdetails.TechDetailsAction" method="renderImage"/>  
+        <action name="aws">
+            <result>aws.jsp</result>
+        </action>
+         <action name="api">
+            <result>api.jsp</result>
+        </action>
+         <action name="apigee">
+            <result>apigee.jsp</result>
+        </action> <action name="cassandra">
+            <result>cassandra.jsp</result>
+        </action> <action name="cloud-admin">
+            <result>cloud-admin.jsp</result>
+        </action> <action name="cloud-developer">
+            <result>cloud-developer.jsp</result>
+        </action> <action name="cloudera">
+            <result>cloudera.jsp</result>
+        </action> <action name="dashboard-apcloud">
+            <result>workshop.jsp</result>
+        </action> <action name="gae">
+            <result>gae.jsp</result>
+        </action> <action name="ibm-bluemix">
+            <result>ibm-bluemix.jsp</result>
+        </action> <action name="microsoft-azure">
+            <result>microsoft-azure.jsp</result>
+        </action> <action name="mongodb">
+            <result>mongodb.jsp</result>
+        </action> <action name="node-js">
+            <result>node-js.jsp</result>
+        </action> <action name="openstack">
+            <result>openstack.jsp</result>
+        </action> <action name="redis">
+            <result>redis.jsp</result>
+        </action> 
+        
+        
+        <action name="chef">
+            <result>chef.jsp</result>
+        </action> 
+		
+		<action name="cloud-foundry">
+            <result>cloud-foundry.jsp</result>
+        </action> 
+		<action name="hadoop">
+            <result>hadoop.jsp</result>
+        </action>
+		<action name="puppet">
+            <result>puppet.jsp</result>
+        </action> 
+		<action name="vmware">
+            <result>vmware.jsp</result>
+        </action> 
+        	<action name="angular-js">
+            <result>angular-js.jsp</result>
+        </action>
+		<action name="express-js">
+            <result>express-js.jsp</result>
+        </action> 
+		<action name="google-cloud-platform">
+            <result>google-cloud-platform.jsp</result>
+        </action>
+        
+        <action name="devops">
+            <result>devops.jsp</result>
+        </action> 
+        <action name="docker">
+            <result>docker.jsp</result>
+        </action> 
+        <action name="github">
+            <result>github.jsp</result>
+        </action> 
+        <action name="meanstack">
+            <result>meanstack.jsp</result>
+        </action> 
+        <action name="shell">
+            <result>shell.jsp</result>
+        </action> 
+        <action name="unix-commands">
+            <result>unix-commands.jsp</result>
+        </action> 
+        
+          <action name="javascript">
+            <result>javascript.jsp</result>
+        </action> 
+    </package>
+      <package name="exception" extends="default" namespace="/exception">
+        <action name="exception">
+            <result>Exception.jsp</result>
+        </action>
+        <action name="accessFailed">
+            <result>AccessFailed.jsp</result>
+        </action>
+         
+    </package>
+    <include file="general.xml"/> 
+    <include file="ajax.xml"/>
+</struts>

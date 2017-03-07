@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : general.xml
+    Created on : June 22, 2016, 4:46 PM
+    Author     : miracle
+    Description:
+        Purpose of the document follows.
+-->
+
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="general" namespace="/" extends="default">
+           
+        <action name="loginCheck" class="com.mss.apcloud.general.LoginAction" method="logincheck">  
+          <!--  <result name="success">login-page.jsp</result>      -->
+            <result name="input">/login-page.jsp</result>
+            <result name="error">/login-page.jsp</result>
+            <result name="accessFailed">/login-page.jsp</result>
+            <!-- <result name="success">dashboard-apcloud.jsp</result>        -->
+            <result type="redirect">general/dashboard.action</result> 
+            <result type="redirect" name="workshop">general/workshop.action</result>
+        </action>
+<!--       <action name="dashboard" class="com.mss.apcloud.general.DashBoardAction" method="getDashboard">
+             <result type="redirect" name="input">general/login.action</result>
+             <result name="success">dashboard-apcloud.jsp</result>              
+                       
+        </action>-->
+<!--         <action name="dashboard" class="com.mss.apcloud.DashBoard.DashBoardAction" method="getDashboard">
+             <result type="redirect" name="input">general/login.action</result>
+             <result name="success">dashboard-apcloud_2.jsp</result>              
+                       
+        </action>-->
+        <action name="dashboard" class="com.mss.apcloud.DashBoard.DashBoardAction" method="getProfission">
+            <interceptor-ref name="crudStack" />
+            <result type="redirect" name="input">general/login.action</result>
+            <result type="redirect" name="student">general/workshopDashboard.action</result> 
+            <result type="redirect" name="software">general/workshopDashboard.action</result>    
+            <result type="redirect" name="admin">general/leftMenuCollege.action</result>
+            <result type="redirect" name="facult">general/enolledCollegeDetails.action</result>
+            <result type="redirect" name="passoutStudent">general/workshopDashboard.action</result>
+                       
+        </action>
+        <action name="workshopDashboard" class="com.mss.apcloud.DashBoard.DashBoardAction" method="getDashboard">
+            <interceptor-ref name="crudStack" />
+            <result type="redirect" name="input">general/login.action</result>
+            <result name="success">workshopDashboard.jsp</result>              
+                       
+        </action>
+       <!--  <action name="certification" class="com.mss.apcloud.DashBoard.DashBoardAction" method="getCertifications">
+             <result type="redirect" name="input">general/login.action</result>
+             <result name="success">certification.jsp</result>              
+                       
+        </action> -->
+        
+        <action name="certification" class="com.mss.apcloud.DashBoard.DashBoardAction" method="getAvailableCertifications">
+            <interceptor-ref name="crudStack" />
+            <result type="redirect" name="input">general/login.action</result>
+            <result name="success">/AvailableCertifications.jsp</result>              
+                       
+        </action>
+        
+        <action name="myProfile" class="com.mss.apcloud.DashBoard.DashBoardAction" method="getMyProfile">
+            <interceptor-ref name="crudStack" />
+            <result type="redirect" name="input">general/login.action</result>
+            <result name="success">myProfile.jsp</result>              
+                       
+        </action>
+<!--        <action name="enrollWorkshop" class="com.mss.apcloud.general.DashBoardAction" method="enrollWorkshop">
+             <result type="redirect" name="input">general/login.action</result>
+             <result type="redirect">general/dashboard.action?resultMessage=${resultMessage}</result>              
+                       
+        </action>-->
+        <action name="enrollWorkshop" class="com.mss.apcloud.DashBoard.DashBoardAction" method="enrollWorkshop">
+            <interceptor-ref name="crudStack" />
+            <result type="redirect" name="input">general/login.action?workshopId=${workshopId}</result>
+            <result type="redirect">general/workshopDashboard.action?resultMessage=${resultMessage}</result>              
+                       
+        </action>
+        <action name="login">
+            <result>/login-page.jsp</result>
+        </action> 
+        
+<!--        <action name="workshop">
+            <result>/workshop.jsp</result>
+        </action>-->
+        
+        <action name="workshop" class="com.mss.apcloud.DashBoard.DashBoardAction" method="getDashboardWorkshop">
+
+            <result type="redirect" name="input">general/login.action</result>
+<!--            <result >dashboard-workshop.jsp</result> -->
+            <result >dashboard-workshop.jsp</result> 
+            
+        </action>
+        
+        <action name="schedule" class="com.mss.apcloud.general.ScheduleAction" method="getSchedulesResults">
+            <result name="input">/schedule.jsp</result>           
+            <result name="success">/schedule.jsp</result>           
+        </action>
+        
+        <action name="college" class="com.mss.apcloud.general.RegistrationAction" method="getCollegeLis">
+            <result>/college.jsp</result>
+        </action>
+        
+        <action name="registrationForm" class="com.mss.apcloud.general.RegistrationAction" method="getRegistrationForm">
+            <result>/registration-form.jsp</result>
+        </action>
+        
+        <action name="collegeEnroll" class="com.mss.apcloud.general.RegistrationAction" method="enrollCollege">
+            <result>/enrollCollege.jsp</result>
+        </action>
+        
+        <action name="registration" class="com.mss.apcloud.general.RegistrationAction" method="insertRegDetails">
+                
+            <result type="redirect" name="emailExist">general/registrationForm.action?resultMessage=${resultMessage}</result>
+            <result type="redirect" name="success">general/reglogin.action?resultMessage=${resultMessage}</result>
+
+<!--                <result type="redirect" type="error">
+
+general/registrationForm.action</result>-->
+        </action>
+        
+        <action name="reglogin" class="com.mss.apcloud.general.LoginAction" method="regLogin">
+            <result name="success">/login-page.jsp</result>
+        </action>
+        
+        <action name="enrollCollege" class="com.mss.apcloud.general.RegistrationAction" method="enrollCollegeDetails">
+                
+            <result type="redirect">collegeEnroll.action?resultMessage=${resultMessage}</result>
+<!--                <result type="error">../registration-form.jsp</result>-->
+        </action>
+        
+      
+        <action name="logout" class="com.mss.apcloud.general.LoginAction" method="doLogout">
+           
+            <result type="redirect">general/login.action</result>
+            <result name="error" type="redirect">../exception/exception.action</result>
+        </action>  
+        
+        <action name="techTopics" class="com.mss.apcloud.DashBoard.DashBoardAction" method="getTechTopics">
+            <result>/techtopics.jsp</result>
+        </action>
+        
+        <action name="update" class="com.mss.apcloud.DashBoard.DashBoardAction" method="updateDetails">
+            <result type="redirect">general/myProfile.action?resultMessage=${resultMessage}</result>
+        </action>
+        
+        <action name="getExamDetailsByTopicId" class="com.mss.apcloud.DashBoard.DashBoardAction" method="getExamDetailsByTopicId">
+            <interceptor-ref name="crudStack" />
+            <result>/ExamInstructions.jsp</result>
+        </action>
+        
+        <action name="registerWorkshop" class="com.mss.apcloud.DashBoard.DashBoardAction" method="registerWorkshop">
+            
+<!--            <result type="redirect" name="input">general/login.action</result>-->
+            <result type="redirect" name="success">registrationForm.action?collegeid=${collegeId}</result>
+        </action>
+
+       
+        <action name="workshoptopics" class="com.mss.apcloud.DashBoard.DashBoardAction" method="getWorkshopTopics">
+            <result>/techtopics.jsp</result>
+        </action>
+        
+        <action name="contactUS" class="com.mss.apcloud.contactus.ContactUsAction" method="insertContactUsData">
+            <result name="input">/contactUs.jsp</result>           
+            <result name="success">/contactUs.jsp</result>           
+        </action>
+        
+        <action name="doAddContactUsData" class="com.mss.apcloud.contactus.ContactUsAction" method="doAddContactUsData">
+            <result type="redirect" name="success">general/contactUS.action?resultMessage=${resultMessage}</result>      
+                      
+        </action>
+        
+        <action name="resetPassword" class="com.mss.apcloud.general.PasswordAction">              
+            <result>/ResetPassword.jsp</result>
+        </action>
+        <action name="resetPasswordSubmit" class="com.mss.apcloud.general.PasswordAction" method="resetPassword">            
+            <!-- <result type="redirect">/resetPassword.action?resultMessage=${resultMessage}</result>
+            
+            
+            <result name="input">/resetPassword.action?resultMessage=${resultMessage}</result> -->
+            <result>/ResetPassword.jsp</result>
+            <result name="input">/ResetPassword.jsp</result>      
+            <result type="redirect" name="login">/login.action</result>
+            <result type="redirect" name="accessFailed">../exception/accessFailed.action</result>
+            <result name="error" type="redirect">../exception/exception.action</result>
+            
+        </action>
+        
+        
+        <action name="leftMenuCollege" class="com.mss.apcloud.DashBoard.DashBoardAction" method="leftMenuCollege">
+            <interceptor-ref name="crudStack" />
+            <result type="redirect" name="login">general/login.action</result>
+            <result>collegeListActivation.jsp</result>      
+            <result type="redirect" name="accessFailed">general/accessFailed.action</result>
+        </action>
+        
+        <action name="editCollegeDet" class="com.mss.apcloud.DashBoard.DashBoardAction" method="editCollegeDet">
+            <interceptor-ref name="crudStack" />
+            <result type="redirect" name="input">general/login.action</result>
+            <result name="success">collegeListActivation.jsp</result>              
+                       
+        </action>
+        <action name="enolledCollegeDetails" class="com.mss.apcloud.DashBoard.DashBoardAction" method="getEnolledCollegeDetails">
+            <interceptor-ref name="crudStack" />
+            <result>UpdateCollegeDetails.jsp</result>
+            <result type="redirect" name="login">general/login.action</result>
+            <result type="redirect" name="accessFailed">general/accessFailed.action</result>
+        </action>
+        
+        <action name="updateEnrollCollege" class="com.mss.apcloud.DashBoard.DashBoardAction" method="updateEnrollCollege">
+            <interceptor-ref name="crudStack" />
+            <result type="redirect">general/enolledCollegeDetails.action?resultMessage=${resultMessage}</result>
+        </action>
+
+
+        <action name="enrollLeftMenuCollege" class="com.mss.apcloud.DashBoard.DashBoardAction" method="enrollLeftMenuCollege">
+            <interceptor-ref name="crudStack" />
+            <result type="redirect" name="input">general/login.action</result>
+            <result type="redirect" name="login">general/login.action</result>
+            <result>enrollCollegeListActivation.jsp</result>              
+            <result type="redirect" name="accessFailed">general/accessFailed.action</result>
+        </action>
+        
+        <action name="registrationDetailsSearch" class="com.mss.apcloud.general.RegistrationAction" method="enrollDetailsSearch">    
+        <interceptor-ref name="crudStack" />
+            <result>registrationDetails.jsp</result>
+            <result type="redirect" name="input">general/login.action</result>
+            <result type="redirect" name="login">general/login.action</result>
+            <result type="redirect" name="accessFailed">general/accessFailed.action</result>
+        </action>
+        
+        <action name="enrollDetailsSearch" class="com.mss.apcloud.general.RegistrationAction" method="enrollDetailsSearch">            
+                 <interceptor-ref name="crudStack" />
+            <result>registrationDetails.jsp</result>                 
+            <result type="redirect" name="input">general/login.action</result>
+            <result type="redirect" name="login">general/login.action</result>
+            <result type="redirect" name="accessFailed">general/accessFailed.action</result>
+        </action>
+        
+        <action name="workshopDetailsAdd" class="com.mss.apcloud.DashBoard.DashBoardAction" method="workshopDetailsAdd">
+            <interceptor-ref name="crudStack" />
+            <result>workshopDetailsAdd.jsp</result> 
+            <result type="redirect" name="input">general/login.action</result>
+            <result type="redirect" name="login">general/login.action</result>
+            <result type="redirect" name="accessFailed">general/accessFailed.action</result>
+        </action>
+        <action name="CurrcullamAddTopicsData" class="com.mss.apcloud.DashBoard.DashBoardAction" method="getCurrcullamAddTopicsData">
+            <interceptor-ref name="crudStack" />
+            <result name="success">curriculumDetailsAdd.jsp</result> 
+            <result type="redirect" name="input">general/login.action</result>
+        </action>
+        <action name="exportEnrollExcelSheet" class="com.mss.apcloud.DashBoard.DashBoardAction"  method="exportEnrollExcelSheet">
+        </action>
+
+
+        <action name="generatExcelForRegistration" class="com.mss.apcloud.general.RegistrationAction" method="excelSheetForRegistratioDetails">
+            <interceptor-ref name="crudStack" />
+            <result name="input">registrationDetails.jsp</result>      
+            <result name="success">registrationDetails.jsp</result>                 
+            <result type="redirect" name="login">/login.action</result>
+            <result type="redirect" name="accessFailed">../exception/accessFailed.action</result>
+            <result name="error" type="redirect">../exception/exception.action</result>
+        </action>
+
+        <action name="generateCollegeExcel" class="com.mss.apcloud.DashBoard.DashBoardAction"  method="generateCollegeExcel">
+        </action>
+            
+            
+        <action name="accessFailed"> 
+            <result>/AccessFailed.jsp</result>
+        </action>
+        
+        <action name="downloadkits">
+            <result>DownloadKits.jsp</result>
+        </action> 
+        <action name="doDownloadKits" class="com.mss.apcloud.DashBoard.DashBoardAction" method="doDownloadKits">
+        </action>
+            
+        <action name="registerCoach" class="com.mss.apcloud.general.RegistrationAction" method="redirectCoachDetails"> 
+            <result>RegisterCoachDetails.jsp</result>
+        </action>
+        <action name="registerCoachDetalis" class="com.mss.apcloud.general.RegistrationAction" method="registerAsCoach">
+            <interceptor-ref name="crudStack" />
+<!--           <result>RegisterCoachDetails.jsp</result>-->
+            <result type="redirect" name="success">general/registerCoach.action?resultMessage=${resultMessage}</result>
+<!--            <result type="redirect" name="emailExist">general/RegisterCoach.action</result>-->
+        </action>
+
+        
+        <action name="registredCoachDetailsSearch" class="com.mss.apcloud.DashBoard.DashBoardAction" method="registredCoachDetailsSearch">
+            <interceptor-ref name="crudStack" />
+            <result type="redirect" name="login">general/login.action</result>
+            <result>RegisterCoachSearch.jsp</result>      
+            <result type="redirect" name="accessFailed">general/accessFailed.action</result>
+        </action>
+
+        <action name="getRegistratesTopicsData" class="com.mss.apcloud.DashBoard.DashBoardAction" method="getRegistratesTopicsData">
+            <interceptor-ref name="crudStack" />
+            <result type="redirect" name="login">general/login.action</result>
+            <result>WorkshopRegistraintsDetails.jsp</result>      
+           
+        </action>
+        
+        <action name="topicsList" class="com.mss.apcloud.DashBoard.DashBoardAction" method="topicsListRetrive">
+            <interceptor-ref name="crudStack" />
+            <result type="redirect" name="login">general/login.action</result>
+            <result name="error" type="redirect">../exception/exception.action</result>
+            <result>topicsList.jsp</result>      
+           
+        </action>
+        <action name="topicDetails" class="com.mss.apcloud.DashBoard.DashBoardAction" method="topicDetails">
+            <interceptor-ref name="crudStack" />
+            <result type="redirect" name="login">general/login.action</result>
+            <result name="error" type="redirect">/exception/exception.action</result>
+            <result >topicDetails.jsp</result>      
+           
+        </action>
+        <action name="insertorUpdateTopics" class="com.mss.apcloud.DashBoard.DashBoardAction" method="insertorUpdateTopics">
+           <interceptor-ref name="crudStack" />
+            <result type="redirect" name="login">general/login.action</result>
+            <result name="error" type="redirect">/exception/exception.action</result>
+            <result  type="redirect">/general/topicDetails.action?topicId=${topicId}&amp;topicName=${topicName}&amp;resultMessage=${resultMessage}</result>      
+           
+        </action>
+        
+        
+        <action name="topicImageDownload" class="com.mss.apcloud.DashBoard.DashBoardAction" method="topicImageDownload">
+        </action>
+        <action name="documentsList" class="com.mss.apcloud.DashBoard.DashBoardAction" method="getDocumentsList">
+           <interceptor-ref name="crudStack" />
+            <result type="redirect" name="login">general/login.action</result>
+            <result name="error" type="redirect">/exception/exception.action</result>
+            <result  >documentsList.jsp</result>      
+           
+        </action>
+        <action name="insertDocumentDetails" class="com.mss.apcloud.DashBoard.DashBoardAction" method="insertDocumentDetails">
+           <interceptor-ref name="crudStack" />
+            <result type="redirect" name="login">general/login.action</result>
+            <result name="error" type="redirect">/exception/exception.action</result>
+            <result  type="redirect">/general/documentsList.action?topicId=${topicId}&amp;topicName=${topicName}&amp;resultMessage=${resultMessage}</result> 
+           
+        </action>
+        <action name="downloadDocument" class="com.mss.apcloud.DashBoard.DashBoardAction" method="downloadDocument">
+        </action>
+        
+        
+         <action name="exportRegisterCoachDetExcelSheet" class="com.mss.apcloud.DashBoard.DashBoardAction"  method="exportRegisterCoachDetExcelSheet">
+        </action>
+        
+        <action name="exportWorkshopDetExcelSheet" class="com.mss.apcloud.DashBoard.DashBoardAction"  method="exportWorkshopDetExcelSheet">
+        </action>
+        
+        <!--  reset user id-->
+        <action name="resetUserPassword" >              
+            <result>/ResetUserPassword.jsp</result>
+        </action>
+        
+         <action name="resetUserPasswordSubmit" class="com.mss.apcloud.general.PasswordAction" method="resetUserPassword">            
+            <result name="success" >/ResetUserPassword.jsp</result>      
+            <result type="redirect" name="login">/login.action</result>
+        </action>
+        
+         <action name="editRegidtrationDetails" class="com.mss.apcloud.general.RegistrationAction" method="editRegidtrationDetails">
+            <result type="redirect" name="login">general/login.action</result>
+            <result>RegistrationDetailsEditPage.jsp</result>      
+        </action>
+         
+         
+         <action name="updateRegistrationDetails" class="com.mss.apcloud.general.RegistrationAction" method="updateRegistrationDetails">
+             <interceptor-ref name="crudStack" />
+            <result type="redirect" name="login">general/login.action</result>
+            <result name="success" type="redirect">general/editRegidtrationDetails.action?userId=${userId}&amp;profession=${profession}&amp;resultMessage=${resultMessage}</result>      
+        </action>
+        
+        <action name="generatExcelForWorkshopsReg" class="com.mss.apcloud.DashBoard.DashBoardAction" method="excelSheetForWorkshopregDetails">
+          
+        </action>
+    </package>
+</struts>
+
