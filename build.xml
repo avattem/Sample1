@@ -69,7 +69,7 @@
 
     -->
     <target name="build">
-        <war destfile="E:\education\APPDEV\papajohns\workspace\Sample\dist\PhaniJenkins1.war" webxml="E:\education\APPDEV\papajohns\workspace\Sample\build\web\WEB-INF\web.xml">
+        <war destfile="E:\education\APPDEV\papajohns\workspace\Sample\dist\PhaniJenkins.war" webxml="E:\education\APPDEV\papajohns\workspace\Sample\build\web\WEB-INF\web.xml">
             <fileset dir="E:\education\APPDEV\papajohns\workspace\Sample\build\web">
                  <include name="**/*.*"/>
             </fileset>
